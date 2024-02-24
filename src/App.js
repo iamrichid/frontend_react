@@ -1,23 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useState } from 'react';
+import Header from './Header.js';
+import Content from './Content.js';
+import Footer from './Footer.js';
+import Navbar from './Navbar.js';
+
+
 
 function App() {
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [registering, setRegistering] = useState(false);
+
+
+  const handleLogin = () => {
+    setLoggedIn(true);
+  };
+
+  const handleRegister = () => {
+    setRegistering(true);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar handleLogin={handleLogin} handleRegister={handleRegister} />
+      <Header/>
+      <Content loggedIn={loggedIn} registering={registering}/>
+      <Footer/>
     </div>
   );
 }
